@@ -1,0 +1,56 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://scripts/ball.gd" type="Script" id=1]
+[ext_resource path="res://sprites/ball_white_32x32.png" type="Texture" id=2]
+[ext_resource path="res://sprites/bat_white_32x128.png" type="Texture" id=3]
+[ext_resource path="res://scenes/bat.gd" type="Script" id=4]
+[ext_resource path="res://scenes/bat2.gd" type="Script" id=5]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 16, 16 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 16, 64 )
+
+[node name="mainScene" type="Node2D"]
+
+[node name="ball" type="Area2D" parent="."]
+position = Vector2( 649, 369 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="spr_ball" type="Sprite" parent="ball"]
+texture = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ball"]
+shape = SubResource( 1 )
+
+[node name="bat" type="Area2D" parent="."]
+position = Vector2( 92, 384 )
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="bat"]
+shape = SubResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="bat"]
+texture = ExtResource( 3 )
+
+[node name="bat2" type="Area2D" parent="."]
+position = Vector2( 1185, 371 )
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="bat2"]
+shape = SubResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="bat2"]
+texture = ExtResource( 3 )
+
+[connection signal="area_entered" from="ball" to="ball" method="_on_ball_area_entered"]
